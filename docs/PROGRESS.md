@@ -21,11 +21,14 @@
 - 增加 WireGuard shell 语法检查和 smoke test。
 - 在 WSL Ubuntu 中执行 smoke test 并通过。
 - 增加项目规划与进展文档。
+- 设置 GitHub 远端仓库 `haloworld-C/halo-cloud-server`。
+- 创建首次提交并成功推送 `main` 分支。
 
-## 进行中
+## 仓库状态
 
-- 设置 GitHub 远端仓库并创建首次提交。
-- 推送 `main` 分支。
+- 主分支：`main`
+- 远端：`https://github.com/haloworld-C/halo-cloud-server.git`
+- 同步方式：本地分支跟踪 `origin/main`
 
 ## 下一步
 
