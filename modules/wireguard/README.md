@@ -30,7 +30,7 @@ sudo ./scripts/install.sh ./deploy.env
 
 安装过程会：
 
-1. 安装 `wireguard`、`iptables`，可选安装 `qrencode`；
+1. 安装 `wireguard`、`iptables`、`procps` 和 `qrencode`；
 2. 创建服务器密钥和 `/etc/wireguard/wg0.conf`；
 3. 开启 IPv4 转发并配置 NAT；
 4. 启动并设置 `wg-quick@wg0` 开机自启；

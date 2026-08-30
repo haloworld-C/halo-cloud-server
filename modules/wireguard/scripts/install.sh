@@ -52,7 +52,13 @@ fi
 
 export DEBIAN_FRONTEND=noninteractive
 apt-get update
-apt-get install -y wireguard iptables qrencode
+apt-get install -y wireguard iptables procps qrencode
+
+SYSCTL_BIN=$(command -v sysctl || true)
+if [[ -z $SYSCTL_BIN && -x /usr/sbin/sysctl ]]; then
+  SYSCTL_BIN=/usr/sbin/sysctl
+fi
+[[ -n $SYSCTL_BIN ]] || die "安装 procps 后仍找不到 sysctl"
 
 if command -v ufw >/dev/null && ufw status | grep -q '^Status: active'; then
   ufw allow "${WG_PORT}/udp" comment 'WireGuard'
@@ -81,7 +87,7 @@ printf '%s\n' \
 cat > /etc/sysctl.d/70-wireguard-routing.conf <<'EOF'
 net.ipv4.ip_forward = 1
 EOF
-sysctl --system >/dev/null
+"$SYSCTL_BIN" --system >/dev/null
 
 METADATA=/etc/wireguard/deploy.env
 install -m 600 /dev/null "$METADATA"

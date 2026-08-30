@@ -149,7 +149,7 @@ sudo ./scripts/install.sh ./deploy.env
 
 脚本将：
 
-1. 安装 `wireguard`、`iptables` 和 `qrencode`；
+1. 安装 `wireguard`、`iptables`、`procps` 和 `qrencode`；
 2. 生成服务器密钥；
 3. 创建 `/etc/wireguard/wg0.conf`；
 4. 开启 IPv4 转发；
