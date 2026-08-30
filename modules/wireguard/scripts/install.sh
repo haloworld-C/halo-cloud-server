@@ -84,10 +84,12 @@ printf '%s\n' \
   "PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -D FORWARD -o %i -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT; iptables -t nat -D POSTROUTING -s ${WG_SUBNET_PREFIX}.0/24 -o ${PUBLIC_INTERFACE} -j MASQUERADE" \
   > "$WG_CONFIG"
 
-cat > /etc/sysctl.d/70-wireguard-routing.conf <<'EOF'
+cat > /etc/sysctl.d/99-wireguard-routing.conf <<'EOF'
 net.ipv4.ip_forward = 1
 EOF
 "$SYSCTL_BIN" --system >/dev/null
+"$SYSCTL_BIN" -w net.ipv4.ip_forward=1 >/dev/null
+[[ $("$SYSCTL_BIN" -n net.ipv4.ip_forward) == 1 ]] || die "无法启用 IPv4 转发"
 
 METADATA=/etc/wireguard/deploy.env
 install -m 600 /dev/null "$METADATA"

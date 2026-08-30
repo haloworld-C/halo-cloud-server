@@ -329,6 +329,21 @@ sudo iptables -S FORWARD
 
 重点检查 IPv4 转发、自动探测的公网出口网卡和 NAT 规则。
 
+如果 `net.ipv4.ip_forward` 返回 `0`，先临时恢复并验证客户端：
+
+```bash
+sudo /usr/sbin/sysctl -w net.ipv4.ip_forward=1
+```
+
+然后检查是否有其他配置覆盖 WireGuard 设置：
+
+```bash
+sudo grep -Rns '^[[:space:]]*net\.ipv4\.ip_forward' \
+  /etc/sysctl.conf /etc/sysctl.d /usr/lib/sysctl.d 2>/dev/null
+```
+
+本项目使用 `/etc/sysctl.d/99-wireguard-routing.conf` 持久化设置，并在安装时显式验证运行值。
+
 ### 客户端连接后本地网络异常
 
 检查客户端本地网络是否也使用 `10.66.66.0/24`。若发生冲突，应停用当前部署并规划新的 VPN 网段；不要直接修改已分发客户端的地址而不更新服务端 peer。
