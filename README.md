@@ -6,6 +6,7 @@
 
 - [项目规划](docs/PROJECT_PLAN.md)
 - [当前进展](docs/PROGRESS.md)
+- [WireGuard 正式部署手册](modules/wireguard/DEPLOYMENT.md)
 
 ## 模块
 
