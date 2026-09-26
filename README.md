@@ -7,19 +7,25 @@
 - [项目规划](docs/PROJECT_PLAN.md)
 - [当前进展](docs/PROGRESS.md)
 - [WireGuard 正式部署手册](modules/wireguard/DEPLOYMENT.md)
+- [OpenVPN TCP 测试模块](modules/openvpn-tcp/README.md)
 
 ## 模块
 
 | 模块 | 状态 | 用途 |
 |---|---|---|
 | [WireGuard](modules/wireguard/README.md) | 可部署 | 云服务器 VPN、客户端配置与访问撤销 |
+| [OpenVPN TCP](modules/openvpn-tcp/README.md) | 测试脚本就绪 | 与 WireGuard 并行测试 TCP 隧道 |
 
 ## 目录约定
 
 ```text
 halo_server/
 ├── modules/
-│   └── wireguard/
+│   ├── wireguard/
+│   │   ├── deploy.env.example
+│   │   ├── scripts/
+│   │   └── tests/
+│   └── openvpn-tcp/
 │       ├── deploy.env.example
 │       ├── scripts/
 │       └── tests/
